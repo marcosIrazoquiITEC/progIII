@@ -6,6 +6,29 @@ const deleteButton = document.getElementById('deleteButton');
 const selectButton = document.getElementById('selectButton');
 const completeButton = document.getElementById('completeButton');
 
+const saveTasksToLocalStorage = () => {
+  localStorage.setItem('toDoListTasks', list.innerHTML);
+  localStorage.setItem('completedListTasks', completedList.innerHTML);
+};
+
+const loadTasksFromLocalStorage = () => {
+  const toDoListTasks = localStorage.getItem('toDoListTasks');
+  if (toDoListTasks) {
+    list.innerHTML = toDoListTasks;
+  } else {
+    list.innerHTML = ''; // Limpia la lista si no hay tareas en localStorage
+  }
+
+  const completedListTasks = localStorage.getItem('completedListTasks');
+  if (completedListTasks) {
+    completedList.innerHTML = completedListTasks;
+  } else {
+    completedList.innerHTML = ''; // Limpia la lista si no hay tareas en localStorage
+  }
+};
+
+loadTasksFromLocalStorage();
+
 let newTask = (event) =>{
   event.preventDefault();
   let task = document.createElement('li');
@@ -14,7 +37,8 @@ let newTask = (event) =>{
   task.textContent = input.value;
   task.appendChild(check);
   list.appendChild(task);
-  input.value = ''
+  input.value = '';
+  saveTasksToLocalStorage();
 }
 
 let completedTask = (event) =>{
@@ -25,8 +49,9 @@ let completedTask = (event) =>{
     if (checkbox.checked){
       task.removeChild(checkbox)
       completedList.appendChild(task)
+      saveTasksToLocalStorage();
     }
-  })
+  });
 }
 
 let deleteTask = (event) =>{
@@ -36,8 +61,9 @@ let deleteTask = (event) =>{
     let checkbox = task.querySelector('input[type="checkbox"]');
     if (checkbox.checked){
       task.remove();
+      saveTasksToLocalStorage()
     }
-  })
+  });
 }
 
 let selectAllTask = (event) => {
@@ -46,7 +72,6 @@ let selectAllTask = (event) => {
   checkboxes.forEach((checkbox) => {
       checkbox.checked = true;
   });
-
 }
 
 addButton.addEventListener('click',newTask)
