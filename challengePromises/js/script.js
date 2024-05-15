@@ -1,12 +1,4 @@
 const ulJugadores = document.getElementById('ulJugadores')
-/*
-Dudas hasta el momento: no logro entender cuando utilizo promesas o async y await
-async await reemplazan a las promesas?
-sintaxis del manejo de localstorage
-parse y stringify json, argumentos del setItem
-no entiendo la funcion main
-*/ 
-
 
 // Función para obtener los jugadores del localStorage
 const obtenerJugadoresLocalStorage = () => {
@@ -54,24 +46,30 @@ const agregarJugador = async () => {
 
 
 // Función asíncrona para listar todos los jugadores del equipo
+let inactivo = true
 const listarJugadores = async () => {
     // Obtener la lista de jugadores desde el localStorage
-    let listaJugadores = await obtenerJugadoresLocalStorage();
-    ulJugadores.innerHTML = '';
-    listaJugadores.forEach((jugador) => {
-        let liJugador = document.createElement('li');
-        liJugador.textContent = `${jugador.nombre}. ${jugador.edad} años. ${jugador.posicion} ${jugador.estado}`;
-        ulJugadores.appendChild(liJugador);
-    });
+    if (inactivo){
+        ulJugadores.innerHTML = '';
+        inactivo = false
+    } else {
+        let listaJugadores = await obtenerJugadoresLocalStorage();
+        ulJugadores.innerHTML = '';
+        listaJugadores.forEach((jugador) => {
+            let liJugador = document.createElement('li');
+            liJugador.className = jugador.estado
+            liJugador.textContent = `${jugador.nombre}. ${jugador.edad} años. ${jugador.posicion} ${jugador.estado}`;
+            ulJugadores.appendChild(liJugador);
+        });
+        inactivo = true
+    }
 };
 
 // Implementación para listar todos los jugadores
 
 // Función asíncrona para asignar una nueva posición a un jugador
-const asignarPosicion = async () => {
+const asignarPosicion = async (nombreJugador, nuevaPosicion) => {
     let jugadores = obtenerJugadoresLocalStorage();
-    let nombreJugador = prompt('Ingrese el nombre del jugador');
-    let nuevaPosicion = prompt('Ingrese la nueva posición');
     let jugadorExistente = jugadores.find(jugador => jugador.nombre === nombreJugador)
     if(jugadorExistente){
         jugadorExistente.posicion = nuevaPosicion;
@@ -85,14 +83,12 @@ const asignarPosicion = async () => {
     // Implementación para asignar una nueva posición a un jugador
 
 // Función asíncrona para realizar un cambio durante un partido
-const realizarCambio = async () => {
+const realizarCambio = async (nombreJugadorEntrante, nombreJugadorSaliente) => {
     let jugadores = obtenerJugadoresLocalStorage();
-    let nombreJugadorEntrante = prompt('Ingrese el nombre del jugador que va a ingresar');
-    let nombreJugadorSaliente = prompt('Ingrese el nombre del jugador que va a salir');
-    
+
     let jugadorEntrante = jugadores.find(jugador => jugador.nombre === nombreJugadorEntrante);
     let jugadorSaliente = jugadores.find(jugador => jugador.nombre === nombreJugadorSaliente);
-    
+
     if (
         (jugadorEntrante && jugadorEntrante.estado === 'Suplente') &&
         (jugadorSaliente && jugadorSaliente.estado === 'Titular')){
@@ -102,13 +98,30 @@ const realizarCambio = async () => {
             guardarJugadoresLocalStorage(jugadores)
             await new Promise(resolve => setTimeout(resolve, 1000));
             alert('Cambio realizado.');
+        } else{
+            alert('Error en el cambio')
         }
-    // Implementación para realizar un cambio durante un partido
-};
+        // Implementación para realizar un cambio durante un partido
+    };
 
-// Función principal asíncrona que interactúa con el usuario
-const main = async () => {
+
+    // Función principal asíncrona que interactúa con el usuario
+const main = async (estado) => {
     try {
+        console.log(estado)
+        if(estado === 'Agregar'){
+            agregarJugador()
+        } else if (estado === 'Listar'){
+            listarJugadores()
+        } else if (estado === 'Asignar'){
+            let nombreJugador = prompt('Ingrese el nombre del jugador');
+            let nuevaPosicion = prompt('Ingrese la nueva posición');
+            asignarPosicion(nombreJugador,nuevaPosicion)
+        } else if (estado === 'Cambio'){
+            let nombreJugadorEntrante = prompt('Ingrese el nombre del jugador que va a ingresar');
+            let nombreJugadorSaliente = prompt('Ingrese el nombre del jugador que va a salir');
+            realizarCambio(nombreJugadorEntrante,nombreJugadorSaliente)
+        }
         // Lógica para interactuar con el usuario y llamar a las funciones adecuadas
     } catch (error) {
         console.error('Error:', error);

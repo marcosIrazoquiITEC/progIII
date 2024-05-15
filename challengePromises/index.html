@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor de equipo de fútbol</title>
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
     <h1>Gestor de equipo de fútbol</h1>
-
-    <button onclick="agregarJugador()">Agregar jugador</button>
-    <button onclick="listarJugadores()">Listar jugadores</button>
-    <button onclick="asignarPosicion()">Asignar posición</button>
-    <button onclick="realizarCambio()">Realizar cambio durante el partido</button>
+    <div class="button-container">
+        <button onclick="main('Agregar')">Agregar jugador</button>
+        <button onclick="main('Listar')">Listar jugadores</button>
+        <button onclick="main('Asignar')">Asignar posición</button>
+        <button onclick="main('Cambio')">Realizar cambio durante el partido</button>
+    </div>
 
     <ul id="ulJugadores"></ul>
 
