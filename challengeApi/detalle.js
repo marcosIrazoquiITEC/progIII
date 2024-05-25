@@ -106,7 +106,7 @@ const actualizarTotal = () =>{
 const main = () =>{
     mostrarProducto()
     mostrarCarrito()
-
+    actualizarTotal()
 }
 
 main()

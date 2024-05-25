@@ -5,7 +5,6 @@ body {
     background-color: #f8f9fa;
 }
 
-/* Estilos del navbar */
 header {
     background-color: #333;
     padding: 8px;
@@ -91,9 +90,9 @@ h2 {
 }
 
 .producto .precio {
-    position: absolute; /* Hacemos que el precio sea posicionado absolutamente */
-    bottom: 10px; /* Lo colocamos abajo */
-    left: 20px; /* Lo desplazamos un poco hacia la derecha */
+    position: absolute; 
+    bottom: 10px; 
+    left: 20px;
     font-size: 18px;
     color: #007bff;
     font-weight: bold;
@@ -102,7 +101,7 @@ h2 {
 .producto .comprar {
     position: absolute;
     bottom: 10px;
-    right: 20px; /* Posicionamos el botón a la derecha */
+    right: 20px; 
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
@@ -124,7 +123,6 @@ h2 {
     gap: 20px;
 }
 
-/* Estilos del contenedor de producto */
 #productoContainer {
     flex: 1;
     max-width: 60%;
@@ -179,7 +177,6 @@ h2 {
     background-color: #0056b3;
 }
 
-/* Estilos del carrito */
 section {
     flex: 0 0 35%;
     background-color: #fff;
