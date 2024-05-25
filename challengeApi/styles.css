@@ -1,0 +1,253 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+/* Estilos del navbar */
+header {
+    background-color: #333;
+    padding: 8px;
+    text-align: center;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    
+}
+
+nav {
+    background-color: #242121;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav .categoria {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+nav .categoria:hover {
+    background-color: #555;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h2 {
+    clear: both;
+    text-align: center;
+    width: 100%;
+}
+
+.producto {
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    display: flex; 
+    flex-direction: column;
+    position: relative; 
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+}
+
+.producto img {
+    height: auto;
+    border-radius: 5px;
+    max-width: 100%;
+    min-height: 270px;
+    max-height: 270px;
+}
+
+.producto .info {
+    padding: 10px;
+    flex-grow: 1;
+    margin-bottom: 25px;
+}
+
+.producto h3 {
+    margin: 0 0 10px 0;
+}
+
+.producto p {
+    margin: 0;
+}
+
+.producto .precio {
+    position: absolute; /* Hacemos que el precio sea posicionado absolutamente */
+    bottom: 10px; /* Lo colocamos abajo */
+    left: 20px; /* Lo desplazamos un poco hacia la derecha */
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.producto .comprar {
+    position: absolute;
+    bottom: 10px;
+    right: 20px; /* Posicionamos el botón a la derecha */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.producto .comprar:hover {
+    background-color: #0056b3;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Estilos del contenedor de producto */
+#productoContainer {
+    flex: 1;
+    max-width: 60%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+#productoContainer img {
+    width: 100%;
+    max-width: 200px;
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 5px;
+}
+
+#productoContainer h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+#productoContainer p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+#productoContainer .precio {
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+#productoContainer button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#productoContainer button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos del carrito */
+section {
+    flex: 0 0 35%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+section h3 {
+    margin-bottom: 20px;
+}
+
+#carrito {
+    text-align: left;
+}
+
+
+#carrito .productoCarrito {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#carrito .productoCarrito h3 {
+    margin: 0;
+    font-size: 16px;
+    flex: 1;
+}
+
+#carrito .productoCarrito .precio {
+    margin: 0;
+    font-size: 16px;
+    color: #007bff;
+    font-weight: bold;
+    width: 70px;
+    text-align: right;
+}
+
+#carrito .productoCarrito .cantidad {
+    margin: 0 10px;
+    font-size: 16px;
+    width: 50px;
+    text-align: right;
+}
+
+#carrito .productoCarrito button.eliminar {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+#carrito .productoCarrito button.eliminar:hover {
+    background-color: #ff1a1a;
+}
+
+#total {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 10px;
+}
